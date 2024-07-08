@@ -39,6 +39,28 @@
 </p>
 
 <h3>
+    👤 Developer <br>
+</h3>
+
+<p>
+     Allan Alexander Matthew - Main Unity Programmer<br>
+     Nicholas Diporedjo - Game & Sound Artist<br>
+     Yohanes Duns Scotus - Game Artist<br>
+</p>
+
+<h3>
+   📁 How to Play
+</h3>
+
+<p>
+        1. Download ZIP file from my itch.io: <a href="https://jeroekpanggang.itch.io/vitrush">VitRush</a> by JeroekPanggang [This ZIP File contain the builded game]<br>
+        2. Extract the ZIP File<br>
+        3. Click (Extracted) Folder and Search for "VITRUSH" Application<br>
+        4. Click Application<br>
+        5. Enjoy the Game<br>
+</p>
+
+<h3>
     🗂️ Asset Used and Code Reference 
 </h3>
 
