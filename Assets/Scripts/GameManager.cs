@@ -1,53 +1,118 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
 
-    [SerializeField] private GameObject LVL1, LVL2, MAP1, MAP2;
-    public static GameManager gm;
-    //[SerializeField] private AudioSource gameBGM;
-    private void Awake()
-    {
-        gm = this;
-    }
+    [Header("Current")]
+    [SerializeField] public TMP_Text chickenText;
+    [SerializeField] public TMP_Text appleText;
+    [SerializeField] public TMP_Text oatmealText;
+    [SerializeField] public TMP_Text orangeText;
 
+    private int currentChicken, currentApple, currentOatmeal, currentOrange = 0;
+    [SerializeField] private GameObject NotEnough;
+
+    [Header("WIN UI")] // Lose UI ada di Player Health
+    [SerializeField] private GameObject winUI;
+
+    [Header("Target Objective")]
+    [SerializeField] private int targetChicken;
+    [SerializeField] private int targetApple;
+    [SerializeField] private int targetOatmeal;
+    [SerializeField] private int targetOrange;
+
+    [Header("Target Objective Text")]
+    [SerializeField] public TMP_Text TargetchickenText;
+    [SerializeField] public TMP_Text TargetappleText;
+    [SerializeField] public TMP_Text TargetoatmealText;
+    [SerializeField] public TMP_Text TargetorangeText;
+
+    [Header("Pindah Scene setelah Menang")]
+    [SerializeField] private string NamaScene;
+
+    public static GameManager manager;
+    void Awake()
+    {
+        manager = this;
+    }
     private void Start()
     {
-        //gameBGM.Play();
-    }
-    // apple oatmeal orange chicken
-    public void StartingLevel1()
-    {
-        LVL1.SetActive(true);
-        MAP1.SetActive(true);
-
-        MAP2.SetActive(false);
-        LVL2.SetActive(false);
-
-        ObjectiveCounter1.Instance.DisplayTarget(2, 0, 1, 0);
-        ObjectiveCounter1.Instance.ActivateUI(true, true, false, false);
-        FlagCheck.flags.GetObjective(2, 0, 1, 0);
-
+        winUI.SetActive(false);
     }
 
-    public void StartingLevel2()
+    public void IncreaseChicken(int Value)
     {
+        currentChicken += Value;
+        if (currentChicken == targetChicken) { }
+        {
+            chickenText.GetComponent<TMP_Text>().color = Color.green;
+            TargetchickenText.GetComponent<TMP_Text>().color = Color.green;
+
+        }
+        chickenText.text = currentChicken.ToString();
+    }
+
+    public void IncreaseApple(int Value)
+    {
+        currentApple += Value;
+        if (currentApple == targetApple)
+        {
+            appleText.GetComponent<TMP_Text>().color = Color.green;
+            TargetappleText.GetComponent<TMP_Text>().color = Color.green;
+
+        }
+        appleText.text = currentApple.ToString();
+    }
+
+    public void IncreaseOatmeal(int Value)
+    {
+        currentOatmeal += Value;
+        if (currentOatmeal == targetOatmeal)
+        {
+            oatmealText.GetComponent<TMP_Text>().color = Color.green;
+            TargetoatmealText.GetComponent<TMP_Text>().color = Color.green;
+
+        }
+        oatmealText.text = currentOatmeal.ToString();
+    }
+
+    public void IncreaseOrange(int Value)
+    {
+        currentOrange += Value;
+        if(currentOrange == targetOrange) 
+        {
+            orangeText.GetComponent<TMP_Text>().color = Color.green;
+            TargetorangeText.GetComponent<TMP_Text>().color= Color.green;
         
-        ObjectiveCounter1.Instance.RefreshObjective();
-        Debug.Log("YES");
-        LVL2.SetActive(true);
-        MAP2.SetActive(true);
-
-        LVL1.SetActive(false);
-        MAP1.SetActive(false);
-
-        ObjectiveCounter1.Instance.DisplayTarget(1, 2, 1, 3);
-        ObjectiveCounter1.Instance.ActivateUI(true, true, true, true);
-        FlagCheck.flags.GetObjective(1, 2, 1, 3);
-        PlayerGerak.Player.UnlockDash();
-
+        }
+        orangeText.text = currentOrange.ToString();
     }
 
+    public void ObjectiveCheck()
+    {
+        if (currentChicken >= targetChicken && currentApple >= targetApple && currentOatmeal == targetOatmeal && currentOrange == targetOrange)
+        {
+            Debug.Log("Menang");
+            winUI.SetActive(true);
+            Movement.Player.NoMovement();
+            Invoke("Menang", 4f);
+
+        }
+        else
+        {
+            NotEnough.SetActive(true);
+            Invoke("TurnOffNotEnoughScreen", 3f);
+        }
+    }
+    public void TurnOffNotEnoughScreen()
+    {
+        NotEnough.SetActive(false);
+    }
+    public void Menang()
+    {
+        SceneManagement.changeScene.ChangeScene(NamaScene);
+    }
 }

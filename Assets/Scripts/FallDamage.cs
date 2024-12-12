@@ -15,7 +15,7 @@ public class FallDamage : MonoBehaviour
         {
             collision.GetComponent<Health>().TakeDamage(damage);
 
-            PlayerGerak.Player.TeleportIdiotWhoFall(teleportX, teleportY);
+            Movement.Player.TeleportIdiotWhoFall(teleportX, teleportY);
         }
     }
 

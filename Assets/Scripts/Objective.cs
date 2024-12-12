@@ -15,28 +15,28 @@ public class Objective : MonoBehaviour
             {
                 Destroy(gameObject);
                 //Debug.Log("Kena Ayam");
-                ObjectiveCounter1.Instance.IncreaseChicken(Value);
+                GameManager.manager.IncreaseChicken(Value);
             }
 
             else if (ItemID == 2)
             {
                 Destroy(gameObject);
-               // Debug.Log("Kena Apel");
-                ObjectiveCounter1.Instance.IncreaseApple(Value);
+                // Debug.Log("Kena Apel");
+                GameManager.manager.IncreaseApple(Value);
             }
 
             else if (ItemID == 3)
             {
                 Destroy(gameObject);
                 //Debug.Log("Kena Oatmeal");
-                ObjectiveCounter1.Instance.IncreaseOatmeal(Value);
+                GameManager.manager.IncreaseOatmeal(Value);
             }
 
             else if (ItemID == 4)
             {
                 Destroy(gameObject);
                 //Debug.Log("Kena Orange");
-                ObjectiveCounter1.Instance.IncreaseOrange(Value);
+                GameManager.manager.IncreaseOrange(Value);
             }
             itemPick.Play();
         }

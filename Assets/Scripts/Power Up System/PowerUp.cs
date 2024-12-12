@@ -9,7 +9,7 @@ public class PowerUp : MonoBehaviour
     [SerializeField] private int itemPowerID;
 
     [Header("Healing Power per Hearth Value")]
-    private int Value = 1;
+    [SerializeField] private int Value = 1;
     [Header("Mask Duration per Second")]
     [SerializeField] public int MaskDuration;
 

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Ground
   - Chicken
+  - CameraLimit
   layers:
   - Default
   - TransparentFX
